@@ -49,9 +49,12 @@ function Container:containerUpdate(dt, parent)
 
     -- Unselect on escape
     self.any_selected = false
+    self.currently_focused_element = nil
     if self.selected then
         for _, element in ipairs(self.elements) do
-            if element.selected then self.any_selected = true end
+            if element.selected then 
+                self.any_selected = true 
+            end
         end
         if self.input:pressed('unselect') then self:unselect() end
     end
@@ -69,6 +72,9 @@ function Container:containerUpdate(dt, parent)
     else 
         for _, element in ipairs(self.elements) do 
             element:update(dt, self) 
+            if element.selected then
+                self.currently_focused_element = _
+            end
         end 
     end
 end
