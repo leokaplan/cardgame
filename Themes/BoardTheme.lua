@@ -1,7 +1,7 @@
 
 local Game = require 'src/Game'
 local Board = {}
-Board.draw = function(self)
+Board.overlaydraw = function(self)
     if not f2 then print("a") f2= true end
      if self.any_selected then
         if self.currently_focused_element then
@@ -14,13 +14,14 @@ Board.draw = function(self)
                 for k,v in pairs(movearea) do
                     love.graphics.setColor(10,10,128,50) 
                     local x = cell.x +(v.i-cell.i)*cell.w
-                    local y = cell.x +(v.j-cell.i)*cell.h
-                    print(x,y)
+                    local y = cell.y +(v.j-cell.j)*cell.h
                     love.graphics.rectangle('fill', x, y, cell.w, cell.h)
                 end
                 for k,v in pairs(targetarea) do
                     love.graphics.setColor(128, 10, 10,50) 
-                    love.graphics.rectangle('fill', cell.x + (v.i-cell.i)*cell.w, cell.y +(v.j-cell.j)*cell.h, cell.w, cell.h)
+                    local x = cell.x +(v.i-cell.i)*cell.w
+                    local y = cell.y +(v.j-cell.j)*cell.h
+                    love.graphics.rectangle('fill', x, y, cell.w, cell.h)
                 end
             end
         end
