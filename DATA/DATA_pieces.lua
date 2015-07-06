@@ -45,7 +45,7 @@ pieces.tower = {
     target = nil,
     effect = nil,
     passiveeffect = function(self)
-        Game.buy(-1)
+        Game.buy(-1,function()end)
     end
 }
 return pieces

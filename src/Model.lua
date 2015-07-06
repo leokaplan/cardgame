@@ -46,12 +46,12 @@ function Model.buy(player,value)
     Model.players[player].mana = Model.players[player].mana - value
 end
 function Model.setcell(i,j,piece)
-    if i > 1  and i <= Model.cellx and j > 1 and j <= Model.celly then
+    if i >= 1  and i <= Model.cellx and j >= 1 and j <= Model.celly then
         Model.cells[i][j] = piece 
     end
 end
 function Model.getcell(i,j)
-    if i > 1  and i <= Model.cellx and j > 1 and j <= Model.celly then
+    if i >= 1  and i <= Model.cellx and j >= 1 and j <= Model.celly then
         return Model.cells[i][j]
     end
 end

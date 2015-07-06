@@ -39,8 +39,8 @@ Cell.update = function(self,dt)
             Game.selecteffect(nil)
             self.selected = false
         else
-            if piece and piece.owner == Game.getcurrentplayer() then
-               Game.selecteffect(piece.effect(piece),piece.cost) 
+            if piece and piece.owner == Game.getcurrentplayer() and piece.effect then
+               Game.selecteffect(piece:effect(piece),piece.cost) 
             end
         end
     end

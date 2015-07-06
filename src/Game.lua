@@ -8,8 +8,7 @@ function Game.init(cellx,celly,numplayers,initlife)
     Model.init(cellx,celly,numplayers,initlife)
 end
 function Game.selectedeffect(i,j)
-   Game.effect(i,j)
-   Game.buy(Game.cost)
+   Game.buy(Game.cost,function() Game.effect(i,j)end)
 end
 function Game.selecteffect(effect,cost)
     Game.effect = effect
@@ -24,10 +23,11 @@ end
 function Game.getplayers()
     return Model.players
 end
-function Game.buy(value)
+function Game.buy(value,f)
     local player = Game.getcurrentplayer()
     if Model.getplayer(player).mana >= value then
         Model.buy(player, value)
+        f()
     end
 end
 
@@ -45,6 +45,7 @@ function Game.damage(i,j,dmg,kind)
         end
         piece.life = piece.life - damage
         if piece.life <= 0 then
+            Game.buy(-1*piece.cost)
             Model.setcell(i,j,nil)
         end
     end
