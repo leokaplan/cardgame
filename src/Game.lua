@@ -2,11 +2,9 @@ local Model = require 'src/Model'
 
 local Game = {}
 Game.effect = nil
-Game.currentplayer = nil
 
-function Game.init(cellx,celly)
-    Game.currentplayer = 1
-    Model.init(cellx,celly)
+function Game.init(cellx,celly,numplayers,initlife)
+    Model.init(cellx,celly,numplayers,initlife)
 end
 function Game.selectedeffect(i,j)
    Game.effect(i,j) 
@@ -14,13 +12,19 @@ end
 function Game.selecteffect(effect)
     Game.effect = effect
 end
-function Game.Turn()
-    if Game.currentplayer == 1 then
-        Game.currentplayer = 2
-    elseif Game.currentplayer == 2 then
-        Game.currentplayer = 1
-    end
+function Game.turn()
+    Model.Turn()
 end
+function Game.getcurrentplayer()
+    return Model.currentplayer
+end
+function Game.getplayers()
+    return Model.players
+end
+function Game.spend(value)
+    Model.players[Game.getcurrentplayer()].mana = Model.players[Game.getcurrentplayer()].mana + value 
+end
+
 function Game.damage(i,j,dmg,kind)
     local piece = Model.getcell(i,j)
     local damage
@@ -44,16 +48,18 @@ function Game.newpiece(i,j,owner,piece)
         life = piece.life, 
         attack = piece.attack, 
         defense = piece.defense, 
+        effect = piece.effect, 
+        move = piece.move, 
+        target = piece.target, 
         i = i , 
         j = j,
-        effect = piece.effect, 
         owner = owner
     }
 end
 function Game.spawn(i,j,piece)
     local cell = Model.getcell(i,j)
     if not cell then
-        Model.setcell(i,j,Game.newpiece(i,j,Game.currentplayer,piece))
+        Model.setcell(i,j,Game.newpiece(i,j,Game.getcurrentplayer(),piece))
     end
 end
 function Game.getpiece(i,j)
@@ -65,6 +71,17 @@ function Game.collidecross(i,j,a,b,size)
     else
         return false
     end
+end
+function Game.area(fun)
+    local ret = {}
+    for i=1,Model.cellx do
+        for j=1,Model.celly do
+            if fun(i,j) then
+                table.insert(ret,{i=i,j=j})
+            end
+        end
+    end
+    return ret
 end
 function Game.collidelinehor(i,j,a,b,size)
     if  math.abs(i-a) <= size and j == b then

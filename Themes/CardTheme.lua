@@ -15,7 +15,7 @@ Card.draw = function(self)
     love.graphics.printf(self.desc,self.x,self.y+12*2,self.w )
 end
 Card.update = function(self)
-    if self.released then
+    if self.selected then
         Game.selecteffect(self.effect)
     end
 end

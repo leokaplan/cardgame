@@ -9,14 +9,16 @@ function love.load()
     local W,H = love.graphics.getDimensions()
     local card = {}
         card.w = W/5 
-        card.h = W/7
+        card.h = H/7
     local cell = {}
         cell.x = 10 --number of cells in x axis
         cell.y = 10 --number of cells in y axis
         cell.w = W/20
         cell.h = W/20
     local cards = require 'DATA/DATA_cards'
-    Game.init(cell.x,cell.y)
+    local numplayers = 2
+    local initlife = 20
+    Game.init(cell.x,cell.y,numplayers,initlife)
     view = View(0,0,W,H,cell,card,cards)
 end
 

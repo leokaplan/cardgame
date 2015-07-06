@@ -1,11 +1,30 @@
 local Model = {}
 
-function Model.init(cellx,celly)
+Model.cells = {}
+Model.players = {mana = nil}
+Model.currentplayer = nil
+Model.numplayers = nil
+
+
+function Model.Turn()
+    Model.currentplayer = Model.currentplayer + 1
+    if Model.currentplayer > Model.numplayers then
+        Model.currentplayer = 1
+    end
+end
+function Model.init(cellx,celly,numplayers,initmana)
     Model.cellx,Model.celly = cellx,celly
-    Model.cells = {}
+    Model.numplayers = numplayers
+    for i = 1, numplayers do
+        Model.players[i] = {}
+        Model.players[i].mana = initmana
+    end
+    Model.currentplayer = 1
+    
     for i = 1, Model.cellx do
         Model.cells[i] = {}
     end
+    
 end
 function Model.setcell(i,j,piece)
     if i > 1  and i <= Model.cellx and j > 1 and j <= Model.celly then

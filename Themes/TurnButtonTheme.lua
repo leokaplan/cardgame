@@ -1,3 +1,4 @@
+local Game = require 'src/Game'
 local TurnButton = {}
 TurnButton.draw = function(self)
     love.graphics.setColor(64, 64, 64)
@@ -15,7 +16,7 @@ TurnButton.draw = function(self)
 end
 TurnButton.update = function(self,dt)
     if self.released then
-        --Game.turn()
+        Game.turn()
     end
 end
 return TurnButton

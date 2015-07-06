@@ -11,12 +11,9 @@ function Board:new(x, y, w, h,cellx,celly)
     self.cellw = math.floor(w/cellx)
     self.cellh = math.floor(h/celly)
     self.frame = UI.Frame(x, y, w+self.spacing*cellx, h+self.spacing*celly, {extensions = {Theme.Board},  auto_spacing = self.spacing, auto_margin = self.margin})
-    self.cells = {}
     for i = 1, self.cellx do
-        self.cells[i] = {}
         for j=1,self.celly do
-            self.cells[i][j] = Cell((i-1)*(self.cellw+self.spacing),(j-1)*(self.cellh+self.spacing),self.cellw,self.cellh,{i = i ,j = j})
-            self.frame:addElement(self.cells[i][j].button)
+            self.frame:addElement(Cell((i-1)*(self.cellw+self.spacing),(j-1)*(self.cellh+self.spacing),self.cellw,self.cellh,{i = i ,j = j}).button)
         end
     end
 end
