@@ -26,6 +26,12 @@ function Model.init(cellx,celly,numplayers,initmana)
     end
     
 end
+function Model.getplayer(player)
+    return Model.players[player]
+end
+function Model.buy(player,value)
+    Model.players[player].mana = Model.players[player].mana - value
+end
 function Model.setcell(i,j,piece)
     if i > 1  and i <= Model.cellx and j > 1 and j <= Model.celly then
         Model.cells[i][j] = piece 

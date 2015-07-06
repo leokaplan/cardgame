@@ -7,6 +7,7 @@ function Card:new(x, y, w, h,content)
     self.button.name = content.name
     self.button.desc = content.desc
     self.button.effect = content.effect
+    self.button.cost = content.cost
 end
 function Card:update(dt)
     self.button:update(dt)

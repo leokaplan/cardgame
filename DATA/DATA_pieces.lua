@@ -21,6 +21,7 @@ pieces.soldier = {
     life = 5,
     attack = 1,
     defense = 1,
+    cost = 1,
     move = {fun = Game.collidecross, size = 1},
     target = {fun = Game.collidecross, size = 1},
     effect = normaleffect
@@ -30,6 +31,7 @@ pieces.captain = {
     life = 10,
     attack = 3,
     defense = 2,
+    cost = 2,
     move = {fun = Game.collidecross, size = 1},
     target = {fun = Game.collidecross, size = 1},
     effect = normaleffect

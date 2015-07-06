@@ -2,15 +2,18 @@ local Model = require 'src/Model'
 
 local Game = {}
 Game.effect = nil
+Game.cost = nil
 
 function Game.init(cellx,celly,numplayers,initlife)
     Model.init(cellx,celly,numplayers,initlife)
 end
 function Game.selectedeffect(i,j)
-   Game.effect(i,j) 
+   Game.effect(i,j)
+   Game.buy(Game.cost)
 end
-function Game.selecteffect(effect)
+function Game.selecteffect(effect,cost)
     Game.effect = effect
+    Game.cost = cost
 end
 function Game.turn()
     Model.Turn()
@@ -21,8 +24,11 @@ end
 function Game.getplayers()
     return Model.players
 end
-function Game.spend(value)
-    Model.players[Game.getcurrentplayer()].mana = Model.players[Game.getcurrentplayer()].mana + value 
+function Game.buy(value)
+    local player = Game.getcurrentplayer()
+    if Model.getplayer(player).mana >= value then
+        Model.buy(player, value)
+    end
 end
 
 function Game.damage(i,j,dmg,kind)
@@ -51,15 +57,18 @@ function Game.newpiece(i,j,owner,piece)
         effect = piece.effect, 
         move = piece.move, 
         target = piece.target, 
+        cost = piece.cost, 
         i = i , 
         j = j,
         owner = owner
     }
 end
-function Game.spawn(i,j,piece)
+function Game.spawn(i,j,piece,cost)
     local cell = Model.getcell(i,j)
+    local player = Game.getcurrentplayer()
     if not cell then
-        Model.setcell(i,j,Game.newpiece(i,j,Game.getcurrentplayer(),piece))
+        Model.setcell(i,j,Game.newpiece(i,j,player,piece))
+        Model.buy(player,cost)
     end
 end
 function Game.getpiece(i,j)

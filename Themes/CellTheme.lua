@@ -26,7 +26,8 @@ Cell.draw = function(self)
         love.graphics.rectangle('fill', self.x, self.y, self.w, self.h)
         love.graphics.setColor(0, 0, 0) 
         love.graphics.print(piece.life,self.x,self.y)
-        love.graphics.print(piece.owner,self.x+self.w-12,self.y)
+--        love.graphics.print(piece.owner,self.x+self.w-12,self.y)
+        love.graphics.print(piece.cost,self.x+self.w-12,self.y)
         love.graphics.print(piece.attack,self.x,self.y+self.h-12)
         love.graphics.print(piece.defense,self.x+self.w/2,self.y+self.h-12)
     end
@@ -40,7 +41,7 @@ Cell.update = function(self,dt)
             self.selected = false
         else
             if piece and piece.owner == Game.getcurrentplayer() then
-               Game.selecteffect(piece.effect(piece)) 
+               Game.selecteffect(piece.effect(piece),piece.cost) 
             end
         end
     end
