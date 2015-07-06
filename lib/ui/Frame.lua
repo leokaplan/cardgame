@@ -53,8 +53,13 @@ function Frame:draw()
     self:baseDraw()
     if self.closeable then self:closeableDraw() end
     self:containerDraw()
+    self:overlayDraw()
 end
-
+function Frame:overlayDraw()
+    for _, extension in ipairs(self.extensions or {}) do
+        if extension.overlaydraw then extension.overlaydraw(self) end
+    end
+end
 function Frame:addElement(element)
     return self:containerAddElement(element)
 end
