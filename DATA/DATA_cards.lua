@@ -5,6 +5,7 @@ local pieces = require 'DATA/DATA_pieces'
 local function piece(name,cost)
     return {
         name = name,
+        cost = cost,
         desc = "spawn a "..name,
         effect = function(i,j)
             Game.spawn(i,j,pieces[name])
@@ -40,20 +41,7 @@ cards.heal = {
         Game.damage(i,j,-2,"magical")
     end
 }
-cards.soldier = {
-    name = "soldier",
-    desc = "spawns a soldier",
-    cost = 1,
-    effect = function(i,j)
-        Game.spawn(i,j,pieces.soldier,cards.soldier.cost)
-    end
-}
-cards.captain = {
-    name = "captain",
-    desc = "spawns a captain",
-    cost = 3,
-    effect = function(i,j)
-        Game.spawn(i,j,pieces.captain,cost)
-    end
-}
+cards.soldier = piece("soldier",1)
+cards.captain = piece("captain",3)
+cards.tower = piece("tower",1)
 return cards

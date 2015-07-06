@@ -36,4 +36,16 @@ pieces.captain = {
     target = {fun = Game.collidecross, size = 1},
     effect = normaleffect
 }
+pieces.tower = {
+    life = 20,
+    attack = 3,
+    defense = 2,
+    cost = 0,
+    move = nil, 
+    target = nil,
+    effect = nil,
+    passiveeffect = function(self)
+        Game.buy(-1)
+    end
+}
 return pieces

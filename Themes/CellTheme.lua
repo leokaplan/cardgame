@@ -2,7 +2,6 @@
     local Game = require 'src/Game'
 local Cell = {}
 Cell.draw = function(self)
-    if not f1 then print("b") f1= true end
     local piece = Game.getpiece(self.i,self.j)
     love.graphics.setColor(64, 64, 64)
     if self.hot then 

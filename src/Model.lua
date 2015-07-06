@@ -6,11 +6,24 @@ Model.currentplayer = nil
 Model.numplayers = nil
 
 
+
+
 function Model.Turn()
     Model.currentplayer = Model.currentplayer + 1
     if Model.currentplayer > Model.numplayers then
         Model.currentplayer = 1
     end
+    
+    for i=1,Model.cellx do
+        for j=1,Model.celly do
+            local piece = Model.getcell(i,j)
+            if piece and piece.passiveeffect and piece.owner == Model.currentplayer then
+                piece:passiveeffect()
+            end
+        end
+    end
+
+
 end
 function Model.init(cellx,celly,numplayers,initmana)
     Model.cellx,Model.celly = cellx,celly

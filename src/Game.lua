@@ -55,6 +55,7 @@ function Game.newpiece(i,j,owner,piece)
         attack = piece.attack, 
         defense = piece.defense, 
         effect = piece.effect, 
+        passiveeffect = piece.passiveeffect, 
         move = piece.move, 
         target = piece.target, 
         cost = piece.cost, 
@@ -63,12 +64,11 @@ function Game.newpiece(i,j,owner,piece)
         owner = owner
     }
 end
-function Game.spawn(i,j,piece,cost)
+function Game.spawn(i,j,piece)
     local cell = Model.getcell(i,j)
     local player = Game.getcurrentplayer()
     if not cell then
         Model.setcell(i,j,Game.newpiece(i,j,player,piece))
-        Model.buy(player,cost)
     end
 end
 function Game.getpiece(i,j)

@@ -17,8 +17,8 @@ function love.load()
         cell.h = W/20
     local cards = require 'DATA/DATA_cards'
     local numplayers = 2
-    local initlife = 20
-    Game.init(cell.x,cell.y,numplayers,initlife)
+    local initmana = 5
+    Game.init(cell.x,cell.y,numplayers,initmana)
     view = View(0,0,W,H,cell,card,cards)
 end
 
