@@ -8,10 +8,13 @@ local normaleffect = function(piece)
                 local target = Game.getpiece(i,j)
                 if target then
                     Game.damage(i,j,piece.attack,"physical")
+                    return true
                 end
             end
             Game.move(piece.i,piece.j,i,j)
+            return true
         end
+        return false
     end
 end
 
@@ -45,7 +48,7 @@ pieces.tower = {
     target = nil,
     effect = nil,
     passiveeffect = function(self)
-        Game.buy(-1,function()end)
+        return Game.buy(-1,function()return true end)
     end
 }
 return pieces

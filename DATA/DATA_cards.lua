@@ -8,7 +8,7 @@ local function piece(name,cost)
         cost = cost,
         desc = "spawn a "..name,
         effect = function(i,j)
-            Game.spawn(i,j,pieces[name])
+            return Game.spawn(i,j,pieces[name])
         end
     }
 end
@@ -23,6 +23,7 @@ cards.fireball = {
         Game.damage(i,j-1,1,"magical")
         Game.damage(i+1,j,1,"magical")
         Game.damage(i,j+1,1,"magical")
+        return true
     end
 }
 cards.thunder = {
@@ -30,7 +31,7 @@ cards.thunder = {
     desc = "does 5 damage in a single cell",
     cost = 5,
     effect = function(i,j)
-        Game.damage(i,j,5,"magical")
+        return Game.damage(i,j,5,"magical")
     end
 }
 cards.heal = {
@@ -38,7 +39,7 @@ cards.heal = {
     desc = "heal a unit in 2 points",
     cost = 3,
     effect = function(i,j)
-        Game.damage(i,j,-2,"magical")
+        return Game.damage(i,j,-2,"magical")
     end
 }
 cards.soldier = piece("soldier",1)
