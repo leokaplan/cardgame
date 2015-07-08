@@ -68,6 +68,7 @@ end
 function Game.spawn(i,j,piece)
     local cell = Model.getcell(i,j)
     local player = Game.getcurrentplayer()
+    
     if not cell then
         Model.setcell(i,j,Game.newpiece(i,j,player,piece))
     end

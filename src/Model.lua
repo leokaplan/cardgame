@@ -22,8 +22,6 @@ function Model.Turn()
             end
         end
     end
-
-
 end
 function Model.init(cellx,celly,numplayers,initmana)
     Model.cellx,Model.celly = cellx,celly
