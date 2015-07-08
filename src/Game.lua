@@ -1,12 +1,23 @@
 local Model = require 'src/Model'
+local cron = require 'lib/cron/cron'
 
 local Game = {}
 Game.effect = nil
 Game.cost = nil
 
+local function turntimer()
+    Game.timetoturn = Game.timetoturn - 1
+    if Game.timetoturn == 0 then
+        Game.turn()
+    end
+end
+
 --------actions----------
-function Game.init(cellx,celly,numplayers,initlife)
-    Model.init(cellx,celly,numplayers,initlife)
+function Game.init(cellx,celly,numplayers,initmana,turntime)
+    Model.init(cellx,celly,numplayers,initmana)
+    Game.turntime = turntime
+    Game.timetoturn = Game.turntime
+    Game.turntimer = cron.every(1,turntimer)
 end
 function Game.selecteffect(effect,cost)
     Game.effect = effect
@@ -14,6 +25,10 @@ function Game.selecteffect(effect,cost)
 end
 function Game.turn()
     Model.Turn()
+    Game.timetoturn = Game.turntime
+end
+function Game.update(dt)
+    Game.turntimer:update(dt)
 end
 function Game.selectedeffect(i,j)
    Game.buy(Game.cost,function() return Game.effect(i,j) end)
@@ -34,9 +49,7 @@ end
 function Game.buy(value,effect)
     local player = Game.getcurrentplayer()
     if Model.getplayer(player).mana >= value then
-        local result = effect()
-        print(result)
-        if result then
+        if effect() then
             Model.buy(player, value)
             return true
         end
@@ -58,10 +71,10 @@ function Game.damage(i,j,dmg,kind)
         end
         piece.life = piece.life - damage
         if piece.life <= 0 then
-            Game.buy(-1*piece.cost)
+            Game.buy(-1*piece.cost,function() return true end)
             Model.setcell(i,j,nil)
-            return true
         end
+        return true
     end
     return false
 end

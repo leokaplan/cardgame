@@ -7,7 +7,19 @@ Model.numplayers = nil
 
 
 
-
+function Model.init(cellx,celly,numplayers,initmana)
+    Model.cellx,Model.celly = cellx,celly
+    Model.numplayers = numplayers
+    for i = 1, numplayers do
+        Model.players[i] = {}
+        Model.players[i].mana = initmana
+    end
+    Model.currentplayer = 1
+    
+    for i = 1, Model.cellx do
+        Model.cells[i] = {}
+    end
+end
 function Model.Turn()
     Model.currentplayer = Model.currentplayer + 1
     if Model.currentplayer > Model.numplayers then
@@ -22,20 +34,6 @@ function Model.Turn()
             end
         end
     end
-end
-function Model.init(cellx,celly,numplayers,initmana)
-    Model.cellx,Model.celly = cellx,celly
-    Model.numplayers = numplayers
-    for i = 1, numplayers do
-        Model.players[i] = {}
-        Model.players[i].mana = initmana
-    end
-    Model.currentplayer = 1
-    
-    for i = 1, Model.cellx do
-        Model.cells[i] = {}
-    end
-    
 end
 function Model.getplayer(player)
     return Model.players[player]

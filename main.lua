@@ -17,13 +17,15 @@ function love.load()
         cell.h = W/20
     local cards = require 'DATA/DATA_cards'
     local numplayers = 2
-    local initmana = 5
-    Game.init(cell.x,cell.y,numplayers,initmana)
+    local initmana = 50--5
+    local turntime = 60--15
+    Game.init(cell.x,cell.y,numplayers,initmana,turntime)
     view = View(0,0,W,H,cell,card,cards)
 end
 
 function love.update(dt)
     view:update(dt)
+    Game.update(dt)
 end
 
 function love.draw()

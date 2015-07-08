@@ -9,9 +9,11 @@ em vigor:
     existem cartas, cada uma com um custo e um efeito.
     algumas cartas invocam pecas no tabuleiro. 
     pecas podem ter movimento, um efeito ativo e um efeito passivo.
+    a peca tem um custo para executar movimentos e ativar seus efeitos(efeitos passivos nao tem custo) atualmente é o mesmo valor para movimentos e efeitos
     efeitos passivos das pecas do jogador X sao computados no inicio do turno do jogador X
     voce só pode utilizar os efeitos das suas pecas.
     qualquer peca pode ser alvo de qualquer efeito. 
+    ao destruir uma peca vc ganha mana equivalente a peca destruida.
 
     todos os players tem acesso a todas as cartas sempre
 
