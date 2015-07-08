@@ -1,15 +1,32 @@
 objetivo:
-    deixar o oponente sem movimentos
+    deixar o oponente sem movimentos 
+    (um dos players desiste)
 
-cada player tem um deck de cartas e uma mao, compram cards no inicio do turno
-    alem disso existe o tabuleiro, onde as pecas sao jogadas
+regras:
 
-o deck eh infinito:
-    as diferencas de qnts de cartas so mudam a probabilidade de vc comprar a tal carta
+em vigor:
+    cada player começa com 20 de mana, o recurso do jogo.
+    existem cartas, cada uma com um custo e um efeito.
+    algumas cartas invocam pecas no tabuleiro. 
+    pecas podem ter movimento, um efeito ativo e um efeito passivo.
+    efeitos passivos das pecas do jogador X sao computados no inicio do turno do jogador X
+    voce só pode utilizar os efeitos das suas pecas.
+    qualquer peca pode ser alvo de qualquer efeito. 
 
-cada player comeca num lado do tabuleiro
-    as pecas tem vida e podem atacar, se mover e/ou gerar recursos,ativamente ou passivamente, recursos que vc usa p invocar cartas
-    vc comeca com uma peca na sua borda q gera 1 recurso por turno e tem 20 de vida
-        existem cartas q aumentam a producao, 
-        existem cartas q invocam novas pecas, mas so da p invocar na sua borda do tabuleiro 
-    
+    todos os players tem acesso a todas as cartas sempre
+
+    ao clicar numa carta vc pode clicar em um lugar do tabuleiro para utilizar seu efeito.
+    ao clicar numa peca, aparecerao 
+        em azul os lugares para onde ela pode se mover 
+        em vermelho os lugares onde ela pode usar seu efeito ativo (atacar, mostly) 
+        em roxo onde ambos
+        
+
+
+pensadas:
+    cada player tem um deck de cartas e uma mao, compram cards no inicio do turno
+        o deck eh infinito:
+            as diferencas de qnts de cartas so mudam a probabilidade de vc comprar a tal carta
+
+    cada player comeca num lado do tabuleiro
+        só pode invocar pecas no seu lado do tabuleiro     
