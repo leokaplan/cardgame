@@ -1,5 +1,6 @@
 
 local Game = require 'src/Game'
+local Colors = require 'UI/Colors'
 local Board = {}
 Board.overlaydraw = function(self)
      if self.any_selected then
@@ -11,7 +12,7 @@ Board.overlaydraw = function(self)
                 if piece.move then
                     local movearea = Game.area(function(i,j) return piece.move.fun(i,j,piece.i,piece.j,piece.move.size)end)
                     for k,v in pairs(movearea) do
-                        love.graphics.setColor(10,10,128,50) 
+                        love.graphics.setColor(Colors.move) 
                         local x = cell.x +(v.i-cell.i)*cell.w
                         local y = cell.y +(v.j-cell.j)*cell.h
                         love.graphics.rectangle('fill', x, y, cell.w, cell.h)
@@ -20,7 +21,7 @@ Board.overlaydraw = function(self)
                 if piece.target then
                     local targetarea = Game.area(function(i,j) return piece.target.fun(i,j,piece.i,piece.j,piece.target.size)end)
                     for k,v in pairs(targetarea) do
-                        love.graphics.setColor(128, 10, 10,50) 
+                        love.graphics.setColor(Colors.target) 
                         local x = cell.x +(v.i-cell.i)*cell.w
                         local y = cell.y +(v.j-cell.j)*cell.h
                         love.graphics.rectangle('fill', x, y, cell.w, cell.h)

@@ -7,7 +7,10 @@ local Client = require 'src/Client'
 function love.load()
     UI.registerEvents()
     math.randomseed(os.time())
-    local W,H = love.graphics.getDimensions()
+    love.graphics.setNewFont( "assets/fonts/digi.otf", 10 )
+    
+    local W,H = 1280,960
+    love.window.setMode(W,H)
     local card = {}
         card.w = W/5 
         card.h = H/7
@@ -20,6 +23,8 @@ function love.load()
     local numplayers = 2
     local initmana = 50--5
     local turntime = 60--15
+    Images = {}
+    Images.logo = love.graphics.newImage( "assets/img/title.png")
     Game.init(cell.x,cell.y,numplayers,initmana,turntime)
     
     Client.setstate("Start")

@@ -5,6 +5,7 @@ local Deck = require 'UI/Deck'
 local StatusBar = require 'UI/StatusBar'
 local TurnButton = require 'UI/TurnButton'
 local Board = require 'UI/Board'
+local UIutils = require 'UI/utils'
 local Client = require 'src/Client'
 
 local Game = UI.Object:extend('Game')
@@ -19,7 +20,7 @@ function Game:new(x,y,w,h,cell,card,cards)
     self.frame:addElement(board)
     self.frame:addElement(turnbutton)
     self.frame:addElement(status)
-    self.frame:addElement(Client.newb(card.w*1.5,h-h/16,card.w,h/16,"Surrender",function() Client.setstate("Start")end))
+    self.frame:addElement(UIutils.newb(card.w*1.5,h-h/16,card.w,h/16,"Surrender",function() Client.setstate("Start")end))
 --    self.frame:addElement(clock)
 end
 function Game:update(dt)
