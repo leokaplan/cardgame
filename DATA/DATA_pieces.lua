@@ -21,6 +21,7 @@ end
 
 
 pieces.soldier = {
+    name = "Soldier",
     life = 5,
     attack = 1,
     defense = 1,
@@ -31,6 +32,7 @@ pieces.soldier = {
 }
 
 pieces.captain = {
+    name = "Captain",
     life = 10,
     attack = 3,
     defense = 2,
@@ -40,6 +42,7 @@ pieces.captain = {
     effect = normaleffect
 }
 pieces.tower = {
+    name = "Tower",
     life = 20,
     attack = 3,
     defense = 2,

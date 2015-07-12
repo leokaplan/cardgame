@@ -1,8 +1,8 @@
 
 local UI = require 'lib/ui/UI'
+local UIutils = require 'UI/utils'
 local Theme = require 'Themes/Theme'
 local Client = require 'src/Client'
-local UIutils = require 'UI/utils'
 local Start = UI.Object:extend('Start')
 function Start:new(x,y,w,h,cell,card,cards)
     self.frame = UI.Frame(x, y, w, h, {extensions = {Theme.StartScreen}})

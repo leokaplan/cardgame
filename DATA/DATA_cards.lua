@@ -4,9 +4,9 @@ local pieces = require 'DATA/DATA_pieces'
 
 local function piece(name,cost)
     return {
-        name = name,
+        name = pieces[name].name,
         cost = cost,
-        desc = "spawn a "..name,
+        desc = "spawn a "..pieces[name].name,
         effect = function(i,j)
             return Game.spawn(i,j,pieces[name])
         end

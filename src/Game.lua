@@ -84,6 +84,7 @@ function Game.spawn(i,j,piece)
     local function newpiece(i,j,owner,piece)
         return {
             life = piece.life, 
+            name = piece.name, 
             attack = piece.attack, 
             defense = piece.defense, 
             effect = piece.effect, 

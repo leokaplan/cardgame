@@ -1,6 +1,7 @@
 
 local Colors = require 'UI/Colors'
     local Game = require 'src/Game'
+local Themeutils = require 'Themes/utils'
 local Cell = {}
 Cell.draw = function(self)
     local piece = Game.getpiece(self.i,self.j)
@@ -24,12 +25,15 @@ Cell.draw = function(self)
             love.graphics.setColor(Colors.enemy) 
         end
         love.graphics.rectangle('fill', self.x, self.y, self.w, self.h)
+        Themeutils.drawimg(Images.piece,self.x,self.y,self.w,self.h)
         love.graphics.setColor(Colors.text) 
         love.graphics.print(piece.life,self.x,self.y)
---        love.graphics.print(piece.owner,self.x+self.w-12,self.y)
-        love.graphics.print(piece.cost,self.x+self.w/2,self.y)
+        love.graphics.printf(piece.cost,self.x,self.y,self.w,"right")
+
+        love.graphics.print(piece.name,self.x,self.y+self.h/4)
+        
         love.graphics.print(piece.attack,self.x,self.y+self.h/2)
-        love.graphics.print(piece.defense,self.x+self.w/2,self.y+self.h/2)
+        love.graphics.printf(piece.defense,self.x,self.y+self.h/2,self.w,"right")
     end
 end
 Cell.update = function(self,dt)
