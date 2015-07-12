@@ -2,6 +2,7 @@ local UI = require 'lib/ui/UI'
 local Theme = require 'Themes/Theme'
 local View = require 'UI/View' 
 local Game = require 'src/Game'
+local Client = require 'src/Client'
 
 function love.load()
     UI.registerEvents()
@@ -20,6 +21,9 @@ function love.load()
     local initmana = 50--5
     local turntime = 60--15
     Game.init(cell.x,cell.y,numplayers,initmana,turntime)
+    
+    Client.setstate("Start")
+    
     view = View(0,0,W,H,cell,card,cards)
 end
 
